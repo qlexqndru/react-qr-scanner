@@ -19,7 +19,9 @@ jobs:
           scope: '@qlexqndru'
 
       - name: Install Dependencies
-        run: yarn
+        run: |
+          rm -f yarn.lock
+          yarn install --force
 
       - name: Build
         run: yarn build
