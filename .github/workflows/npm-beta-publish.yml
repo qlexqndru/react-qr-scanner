@@ -22,10 +22,18 @@ jobs:
       - name: Install Dependencies
         run: |
           rm -f yarn.lock
+          rm -rf dist/
           yarn install --force
 
       - name: Build
         run: yarn build
+
+      - name: Verify Package
+        run: |
+          echo "Checking package.json name"
+          cat package.json | grep name
+          echo "Checking dist directory"
+          ls -la dist/
 
       - name: Publish
         run: npm publish --tag beta --access public
