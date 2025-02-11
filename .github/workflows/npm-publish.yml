@@ -18,11 +18,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@qlexqndru'
 
+      - name: Enable Yarn
+        run: corepack enable
+
       - name: Install Dependencies
         run: |
-          rm -f yarn.lock
           rm -rf dist/
-          yarn install --force
+          yarn install --no-immutable
 
       - name: Build
         run: yarn build
@@ -35,12 +37,6 @@ jobs:
           npm pack --dry-run
           echo "Checking dist directory"
           ls -la dist/
-
-      - name: Publish Pre-release
-        if: ${{ github.event.release.prerelease == true }}
-        run: npm publish --tag beta --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish Release
         if: ${{ github.event.release.prerelease == false }}

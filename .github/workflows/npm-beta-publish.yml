@@ -19,11 +19,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
           scope: '@qlexqndru'
 
+      - name: Enable Yarn
+        run: corepack enable
+
       - name: Install Dependencies
         run: |
-          rm -f yarn.lock
           rm -rf dist/
-          yarn install --force
+          yarn install --no-immutable
 
       - name: Build
         run: yarn build
