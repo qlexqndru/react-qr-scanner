@@ -31,6 +31,8 @@ jobs:
         run: |
           echo "Checking package.json name"
           cat package.json | grep name
+          echo "Checking package contents"
+          npm pack --dry-run
           echo "Checking dist directory"
           ls -la dist/
 
@@ -42,6 +44,8 @@ jobs:
 
       - name: Publish Release
         if: ${{ github.event.release.prerelease == false }}
-        run: npm publish --access public
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          npm publish --access public --scope=@qlexqndru
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
