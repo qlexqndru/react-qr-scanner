@@ -4,20 +4,20 @@
 
 ### Demo
 
-Checkout the [Demo](https://yudielcurbelo.github.io/react-qr-scanner/).
+Checkout the [Demo](https://qlexqndru.github.io/react-qr-scanner/).
 
 ### Install
 
 ```
-yarn add @yudiel/react-qr-scanner
+yarn add @qlexqndru/react-qr-scanner
 
-npm install @yudiel/react-qr-scanner
+npm install qlexqndru/react-qr-scanner
 ```
 
 ### Usage
 
 ```jsx
-import { Scanner } from '@yudiel/react-qr-scanner';
+import { Scanner } from '@qlexqndru/react-qr-scanner';
 
 const App = () => {
     return <Scanner onScan={(result) => console.log(result)} />;
